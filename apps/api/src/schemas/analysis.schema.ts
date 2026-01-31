@@ -5,3 +5,11 @@ export const AnalyzeSchema = {
     text: z.string().min(1, "Text is required")
   })
 };
+
+export const HistoryQuerySchema = z.object({
+  skip: z
+    .string()
+    .optional()
+    .default("0")
+    .transform((val) => parseInt(val, 10))
+});

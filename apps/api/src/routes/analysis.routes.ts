@@ -1,14 +1,21 @@
 import { FastifyInstance } from "fastify";
-import { analyzeHandler } from "../controllers/analysis.controller.js";
-import { AnalyzeSchema } from "../schemas/analysis.schema.js";
+import { analyzeHandler, historyHandler } from "../controllers";
+import { AnalyzeSchema, HistoryQuerySchema } from "../schemas";
 
-export async function analysisRoutes(fastify: FastifyInstance) {
-  fastify.post("/analyze", { 
+/**
+ * Analysis HTTP routes
+ * @param {FastifyInstance} fastify 
+ * @returns {Promise<void>}
+ */
+export async function analysisRoutes(
+  fastify: FastifyInstance
+): Promise<void> {
+  fastify.post("/analyze", {
     schema: AnalyzeSchema
   }, analyzeHandler);
 
 
-  fastify.get("/history", async (request, reply) => {
-    return reply.send([]); 
-  });
+  fastify.get("/history", {
+    schema: HistoryQuerySchema
+  }, historyHandler);
 }

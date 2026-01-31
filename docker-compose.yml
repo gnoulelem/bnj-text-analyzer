@@ -7,7 +7,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
     ports:
-      - "27018:27018"
+      - "27017:27017"
     volumes:
       - mongodb_data:/data/db
 
@@ -15,11 +15,11 @@ services:
     image: mongo-express
     container_name: mongo_express_container
     ports:
-      - "8082:8082"
+      - "8081:8081"
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: admin
       ME_CONFIG_MONGODB_ADMINPASSWORD: password
-      ME_CONFIG_MONGODB_URL: mongodb://admin:password@mongodb:27018/?authSource=admin
+      ME_CONFIG_MONGODB_URL: mongodb://admin:password@mongodb:27017/?authSource=admin
     depends_on:
       - mongodb
 
@@ -29,8 +29,8 @@ services:
     working_dir: /bnj-text-analyzer
     volumes:
       - .:/bnj-text-analyzer
-    environment:
-      - MONGO_URI=mongodb://admin:password@mongodb:27018/analysis_db?authSource=admin
+    env_file:
+      - ./apps/api/.env
     ports:
       - "3001:3001"
     depends_on:

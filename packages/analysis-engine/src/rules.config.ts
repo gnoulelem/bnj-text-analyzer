@@ -1,0 +1,9 @@
+export const ANALYSIS_RULES = {
+  BASE_SCORE: 50,
+  MIN_SCORE: 0,
+  MAX_SCORE: 100,
+  LENGTH_THRESHOLD: 100,
+  LENGTH_BONUS: 20,
+  FORBIDDEN_WORDS: ["fraude", "illégal", "faux"],
+  FORBIDDEN_WORD_PENALTY: 10
+};

@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
+    "dev": " pnpm --filter api... build && tsx watch src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
     "lint": "eslint . --ext .ts",
@@ -19,9 +19,11 @@
   "license": "ISC",
   "packageManager": "pnpm@10.17.0",
   "dependencies": {
+    "@bnj/analysis-engine": "workspace:analysis-engine@*",
     "@fastify/cors": "^11.2.0",
     "fastify": "^5.7.2",
     "fastify-type-provider-zod": "^6.1.0",
+    "mongodb": "7.0.0",
     "zod": "^4.3.6",
     "zod-to-json-schema": "^3.25.1"
   },
