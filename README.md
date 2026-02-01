@@ -42,7 +42,7 @@ Le package `@workspace/analysis-engine` utilise un système de pondération bas�
 
 
 
-### Exemple de configuration (`rules.config.ts`) :
+### Configuration (`rules.config.ts`) :
 ```typescript
 export const ANALYSIS_RULES = {
   BASE_SCORE: 50,
@@ -53,6 +53,7 @@ export const ANALYSIS_RULES = {
   FORBIDDEN_WORDS: ["fraude", "illégal", "faux"],
   FORBIDDEN_WORD_PENALTY: 10
 };
+```
 
 2. **Couche API** : Fastify reçoit le texte, l'envoie au moteur d'analyse, puis enregistre le résultat dans **MongoDB**.
 3. **Frontend** : Une interface moderne construite avec **Tailwind CSS** comprenant :
