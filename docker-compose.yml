@@ -27,29 +27,42 @@ services:
     image: node:20-slim
     container_name: fastify_api
     working_dir: /bnj-text-analyzer
-    volumes:
-      - .:/bnj-text-analyzer
     env_file:
       - ./apps/api/.env
     ports:
       - "3001:3001"
     depends_on:
       - mongodb
+    volumes:
+      - .:/bnj-text-analyzer
+      - /bnj-text-analyzer/node_modules
+    environment:
+      - PNPM_HOME=/root/.local/share/pnpm
+      - PATH=$PATH:/root/.local/share/pnpm
     command: >
-      sh -c "npm install -g pnpm && pnpm install --force && pnpm --filter @workspace/api dev"
+      sh -c "corepack enable && 
+             pnpm config set store-dir /root/.pnpm-store && 
+             pnpm install --force && 
+             pnpm --filter @workspace/api dev"
 
   web:
     image: node:20-slim
     container_name: react_web
     working_dir: /bnj-text-analyzer
-    volumes:
-      - .:/bnj-text-analyzer
     ports:
       - "5173:5173"
     depends_on:
       - mongodb
+    volumes:
+      - .:/bnj-text-analyzer
+      - /bnj-text-analyzer/node_modules
+    environment:
+      - PNPM_HOME=/root/.local/share/pnpm
+      - PATH=$PATH:/root/.local/share/pnpm
     command: >
-      sh -c "npm install -g pnpm && pnpm install --force && pnpm --filter @workspace/web dev"
-
+      sh -c "corepack enable && 
+             pnpm config set store-dir /root/.pnpm-store && 
+             pnpm install --force && 
+             pnpm --filter @workspace/web dev"
 volumes:
   mongodb_data:
