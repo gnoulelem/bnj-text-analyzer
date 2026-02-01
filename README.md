@@ -1,9 +1,7 @@
-Voici le contenu complet de votre fichier `README.md` structuré de manière professionnelle, en français, prêt pour votre soumission de test technique.
-
 ```markdown
-# 🛡️ Covalent AI // Suite de Conformité
+# 🛡️ Text Analyzer
 
-Une solution full-stack haute performance pour l'analyse réglementaire de textes. Ce projet utilise un backend **Fastify**, un frontend **React** (Vite) avec une interface "Glassmorphism" moderne, et un moteur d'analyse partagé en **TypeScript**.
+Une solution full-stack haute performance pour l'analyse réglementaire de textes. Ce projet utilise un backend **Fastify**, un frontend **React** (Vite) avec une interface moderne, et un moteur d'analyse partagé en **TypeScript**.
 
 
 
@@ -71,20 +69,8 @@ docker-compose up -d
 
 ```
 
-* **MongoDB** : `localhost:27017`
-* **Mongo Express (Interface GUI)** : [http://localhost:8081](https://www.google.com/search?q=http://localhost:8081)
-
-### 4. Lancement de l'application
-
-Démarrez l'API et le Frontend en mode développement :
-
-```bash
-pnpm dev
-
-```
-
-* **Frontend (Web)** : [http://localhost:5173](https://www.google.com/search?q=http://localhost:5173)
-* **API** : [http://localhost:3001](https://www.google.com/search?q=http://localhost:3001)
+* **Frontend (Web)** : [http://localhost:5173](http://localhost:5173)
+* **API** : [http://localhost:3001](http://localhost:3001)
 
 ---
 
@@ -114,11 +100,5 @@ pnpm --filter @workspace/analysis-engine test
 * **Backend** : Fastify, Pilote natif MongoDB, Zod.
 * **Logique** : TypeScript, Vitest.
 * **DevOps** : Docker, pnpm Workspaces.
-
-```
-
-
-
-**Souhaitez-vous que je génère également les fichiers `.env.example` par défaut pour l'API et le Web afin que votre commande `cp` fonctionne immédiatement ?**
 
 ```
