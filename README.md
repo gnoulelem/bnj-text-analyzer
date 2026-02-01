@@ -101,4 +101,3 @@ pnpm --filter @workspace/analysis-engine test
 * **Logique** : TypeScript, Vitest.
 * **DevOps** : Docker, pnpm Workspaces.
 
-```
