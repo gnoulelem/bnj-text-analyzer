@@ -28,7 +28,7 @@ Le projet est géré comme un monorepo via **pnpm workspaces** :
 
 1. **Logique Partagée** : Le package `@workspace/analysis-engine` est la source unique de vérité pour les règles de calcul. L'API l'utilise pour le traitement, garantissant une cohérence totale des données.
 
-## ⚙️ Logique du Moteur d'Analyse (Scoring)
+### ⚙️ Logique du Moteur d'Analyse (Scoring)
 
 Le package `@workspace/analysis-engine` utilise un système de pondération basé sur des règles prédéfinies pour évaluer la conformité du texte. Le score final est calculé sur une échelle de 0 à 100.
 
