@@ -55,6 +55,13 @@ cp apps/web/.env.example apps/web/.env
 
 Assurez-vous d'avoir [pnpm](https://pnpm.io/) installé :
 
+Ou installez-le avec :
+
+```bash
+npm install -g pnpm
+
+```
+
 ```bash
 pnpm install
 
