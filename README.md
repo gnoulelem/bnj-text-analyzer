@@ -1,4 +1,4 @@
-```markdown
+
 # 🛡️ Text Analyzer
 
 Une solution full-stack haute performance pour l'analyse réglementaire de textes. Ce projet utilise un backend **Fastify**, un frontend **React** (Vite) avec une interface moderne, et un moteur d'analyse partagé en **TypeScript**.
@@ -9,7 +9,7 @@ Une solution full-stack haute performance pour l'analyse réglementaire de texte
 
 Le projet est géré comme un monorepo via **pnpm workspaces** :
 
-```text
+```markdown
 .
 ├── apps/
 │   ├── api/             # Serveur Fastify (Port 3001)
