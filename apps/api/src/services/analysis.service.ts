@@ -14,11 +14,14 @@ export class AnalysisService {
 
     const status = score > 40 ? "ok" : "alert";
 
-    await this.repository.save({ text, score, status })
+    const saved = await this.repository.save({ text, score, status })
 
     return {
+      _id: saved._id,
+      text: saved.text,
       score,
-      status
+      status,
+      createdAt: saved.createdAt
     };
   }
 
@@ -28,11 +31,10 @@ export class AnalysisService {
    * @returns {Promise<IAnalysisDocument[]>}
    */
   async getHistory(skip: number): Promise<IAnalysisDocument[]> {
-    const limit = 10;
-    const documents = await this.repository.findAll(skip, limit);
+    const documents = await this.repository.findAll(skip);
 
     return documents.map(doc => ({
-      id: doc._id?.toString(),
+      _id: doc._id,
       text: doc.text,
       score: doc.score,
       status: doc.status,

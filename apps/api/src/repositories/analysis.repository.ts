@@ -2,7 +2,7 @@ import { Collection, ObjectId } from "mongodb";
 import { db } from "../libs";
 
 export interface IAnalysisDocument {
-  _id?: ObjectId;
+  _id: ObjectId;
   text: string;
   score: number;
   status: string;
@@ -14,8 +14,8 @@ export class AnalysisRepository {
    * Get MongoDB collection
    * @returns {Collection<IAnalysisDocument>}
    */
-  private get collection(): Collection<IAnalysisDocument> {
-    return db.collection<IAnalysisDocument>("analyses");
+  private get collection(): Collection<Omit<IAnalysisDocument, '_id'>> {
+    return db.collection<Omit<IAnalysisDocument, '_id'>>("analyses");
   }
 
   /**
@@ -24,7 +24,7 @@ export class AnalysisRepository {
    * @returns {Promise<IAnalysisDocument>}
    */
   async save(data: Omit<IAnalysisDocument, "_id" | "createdAt">): Promise<IAnalysisDocument> {
-    const doc: IAnalysisDocument = {
+    const doc: Omit<IAnalysisDocument, '_id'> = {
       ...data,
       createdAt: new Date()
     };
@@ -39,7 +39,7 @@ export class AnalysisRepository {
    * @param {number} limit 
    * @returns {Promise<IAnalysisDocument[]>}
    */
-  async findAll(skip: number = 0, limit: number = 10): Promise<IAnalysisDocument[]> {
+  async findAll(skip: number = 0, limit: number = 5): Promise<IAnalysisDocument[]> {
     return await this.collection
       .find({})
       .sort({ createdAt: -1 })

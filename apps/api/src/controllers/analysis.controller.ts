@@ -15,14 +15,17 @@ export const analyzeHandler = async (
 ): Promise<FastifyReply> => {
   try {
     const { text } = request.body;
-    const { score, status } = await service.processAnalysis(text);
+    const { score, status, createdAt, _id } = await service.processAnalysis(text);
 
     return reply.code(200).send({
+      _id,
+      text,
+      createdAt,
       score,
       status
     });
   } catch (error) {
-    return reply.code(500).send({ status: "error", message: "Internal Server Error" });
+    return reply.code(500).send({ status: "error", message: "Erreur serveur" });
   }
 };
 
@@ -33,16 +36,16 @@ export const analyzeHandler = async (
  * @returns {Promise<FastifyReply>}
  */
 export const historyHandler = async (
-  request: FastifyRequest<{ Querystring: { skip: string } }>, 
+  request: FastifyRequest<{ Querystring: { skip: string } }>,
   reply: FastifyReply
 ): Promise<FastifyReply> => {
   try {
     const { skip } = request.query;
     const history = await service.getHistory(Number.parseInt(skip));
-    
+
     return reply.code(200).send(history);
   } catch (error) {
     console.error(error);
-    return reply.code(500).send({ status: "error", message: "Error fetching history" });
+    return reply.code(500).send({ status: "error", message: "Erreur lors de la récupération de l'historique" });
   }
 };

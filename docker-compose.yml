@@ -38,5 +38,18 @@ services:
     command: >
       sh -c "npm install -g pnpm && pnpm install --force && pnpm --filter @workspace/api dev"
 
+  web:
+    image: node:20-slim
+    container_name: react_web
+    working_dir: /bnj-text-analyzer
+    volumes:
+      - .:/bnj-text-analyzer
+    ports:
+      - "5173:5173"
+    depends_on:
+      - mongodb
+    command: >
+      sh -c "npm install -g pnpm && pnpm install --force && pnpm --filter @workspace/web dev"
+
 volumes:
   mongodb_data:

@@ -16,7 +16,7 @@ server.setSerializerCompiler(serializerCompiler);
 await server.register(cors, { origin: true });
 await server.register(analysisRoutes, { prefix: "/api" });
 
-const start = async () => {
+const start = async (): Promise<void> => {
   try {
     // Initialize MongoDB connection
     await connectToDatabase();
