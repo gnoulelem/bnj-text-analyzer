@@ -27,6 +27,33 @@ Le projet est géré comme un monorepo via **pnpm workspaces** :
 ## ⚙️ Mécanisme de Fonctionnement
 
 1. **Logique Partagée** : Le package `@workspace/analysis-engine` est la source unique de vérité pour les règles de calcul. L'API l'utilise pour le traitement, garantissant une cohérence totale des données.
+
+## ⚙️ Logique du Moteur d'Analyse (Scoring)
+
+Le package `@workspace/analysis-engine` utilise un système de pondération basé sur des règles prédéfinies pour évaluer la conformité du texte. Le score final est calculé sur une échelle de 0 à 100.
+
+### Barème de calcul :
+* **Score de base** : Chaque analyse commence avec un score de **50 points**.
+* **Bonus de longueur (+20)** : Si le texte dépasse 100 caractères (considéré comme une preuve de détail suffisante).
+* **Malus "Mots Interdits" (-10)** : Détection de termes non conformes (ex: "interdit", "illégal", "non-conforme").
+* **Seuils de Statut** :
+    * **OK** : Score ≥ 40.
+    * **ALERT** : Score < 40.
+
+
+
+### Exemple de configuration (`rules.config.ts`) :
+```typescript
+export const ANALYSIS_RULES = {
+  BASE_SCORE: 50,
+  MIN_SCORE: 0,
+  MAX_SCORE: 100,
+  LENGTH_THRESHOLD: 100,
+  LENGTH_BONUS: 20,
+  FORBIDDEN_WORDS: ["fraude", "illégal", "faux"],
+  FORBIDDEN_WORD_PENALTY: 10
+};
+
 2. **Couche API** : Fastify reçoit le texte, l'envoie au moteur d'analyse, puis enregistre le résultat dans **MongoDB**.
 3. **Frontend** : Une interface moderne construite avec **Tailwind CSS** comprenant :
 * **Mises à jour optimistes** : Les nouveaux résultats s'affichent instantanément sans rechargement complet.
