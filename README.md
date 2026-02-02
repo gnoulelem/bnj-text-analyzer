@@ -26,7 +26,7 @@ Le projet est géré comme un monorepo via **pnpm workspaces** :
 
 ## ⚙️ Mécanisme de Fonctionnement
 
-1. **Logique Partagée** : Le package `@workspace/analysis-engine` est la source unique de vérité pour les règles de calcul. L'API l'utilise pour le traitement, garantissant une cohérence totale des données.
+1. **Le module d'analyse** : Le package `@workspace/analysis-engine` est la source unique de vérité pour les règles de calcul. L'API l'utilise pour le traitement, garantissant une cohérence totale des données.
 
 ### ⚙️ Logique du Moteur d'Analyse (Scoring)
 
