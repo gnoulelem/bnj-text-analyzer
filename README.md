@@ -114,7 +114,7 @@ docker-compose up -d
 Pour exécuter les tests unitaires du moteur d'analyse :
 
 ```bash
-pnpm --filter @workspace/analysis-engine test
+pnpm --filter analysis-engine test
 
 ```
 
